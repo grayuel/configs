@@ -8,17 +8,16 @@ import qualified Data.Map as M --keybindings
 
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
-
 import XMonad.Layout.Tabbed
 import XMonad.Layout.Grid
 import qualified XMonad.Layout.Magnifier as Mag
 import XMonad.Layout.Renamed --rename layouts
+
 import XMonad.Layout.Gaps --gap for conky and dzen, need to replace with struts at some point
 import XMonad.Hooks.DynamicLog --for dzen status bar
 
---Statusbars
+--Statusbar
 myXmonadBar = "dzen2 -y '1138' -h '14' -w '2048' -ta 'l' -fg '#87AFD7' -bg '#000000' -fn -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*"
---myStatusBar = "conky -c ~/.xmonad/conkyrc | dzen2 -ta r -w 1448 -x 600 -fg '#87AFD7' -bg '#000000' -fn -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*"
 
 --Terminal
 myTerm = "urxvt"
@@ -56,7 +55,7 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 --Combine New Keys with Old Keys
 myKeys x = newKeys x `M.union` keys defaultConfig x
 
---Layouts, resizableTall allows to resize all windows
+--Layouts, resizableTile allows to resize all windows
 myLayout = gaps [(D,14), (R,240)] $ smartBorders $ resizableTile ||| mresizableTile ||| Full ||| tabs ||| magGrid
         where
                 magGrid = renamed [Replace "Grid"] $ Mag.magnifiercz 1.35 $ Grid
@@ -77,9 +76,7 @@ myWorkspaces = [ " 1 " , " 2 " , " 3 " , " 4 " , " 5 " ]
 
 main = do
         dzenLeftBar <- spawnPipe myXmonadBar
---      dzenRightBar <- spawnPipe myStatusBar
         xmonad $ defaultConfig
-              --  { layoutHook = avoidStruts $ myLayout
                 { layoutHook = myLayout
                 , workspaces = myWorkspaces
                 , terminal = myTerm
@@ -90,4 +87,3 @@ main = do
                 , focusedBorderColor = colorFocusedBorder
                 , borderWidth = 2
                 }
-
