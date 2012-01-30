@@ -1,8 +1,5 @@
 background no
 own_window no
-own_window_class Conky
-own_window_transparent yes
-own_window_type desktop
 
 update_interval 1
 double_buffer yes
@@ -14,17 +11,10 @@ default_color cccccc
 use_xft yes
 uppercase no
 
-draw_borders no
-draw_graph_borders yes
-draw_outline no
-draw_shades no
 
 alignment tr
-#gap_x 1828
 gap_y 50
 gap_x 20
-#lua_load ~/.conky/rings.lua
-#lua_draw_hook_pre main
 
 text_buffer_size 99999
 
