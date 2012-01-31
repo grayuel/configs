@@ -4,6 +4,7 @@ own_window no
 update_interval 1
 double_buffer yes
 no_buffers yes
+minimum_width 200
 maximum_width 200
 
 override_utf8_locale yes
@@ -21,32 +22,50 @@ TEXT
 $alignc ${offset -64}${font Cleanvertising:style=Light:size=52}${time %I:%M}${font}
 
 
-${color #999999}${font Cleanvertising:style=Light:size=20}${time %B %Y}${font}  ${voffset -5}${hr 1}
-${color}${voffset 6}${font Terminus:style=Regular:size=8}${color #cccccc}${execpi 600 DJS=`date +%_d`; cal -js| tail -n +2 | sed s/"\(^\|[^0-9]\)$DJS"'\b'/'\1${color 9E5641}'"$DJS"'$color'/ | sed 's/^/\${offset 20}/'}
+${offset -20}${color #999999}${font Cleanvertising:style=Light:size=20}${time %B %Y}${font}  ${voffset -5}${hr 1}
+${color}${voffset 6}${font Terminus:style=Regular:size=8}${color #cccccc}${execpi 600 DJS=`date +%_d`; cal -js| tail -n +2 | sed s/"\(^\|[^0-9]\)$DJS"'\b'/'\1${color #52798c}'"$DJS"'$color'/}
 
-${color #999999}${font Cleanvertising:style=Light:size=20}System  ${voffset -5}${hr 1}
-${font Terminus:style=Regular:size=8} \
-${offset 20}${color}${voffset 4}/home${alignc -20}${fs_used /home} / ${fs_size /home} $alignr ${fs_free_perc /home}%
-${offset 20}${color #474747}${fs_bar /home}${color}
+${offset -20}${color #999999}${font Cleanvertising:style=Light:size=20}System  ${voffset -5}${hr 1}
+${font Terminus:style=Regular:size=8}\
+${color}RAM:${color #474747} $mem / $memmax
 
-${offset 20}/storage${alignc -20}${fs_used /storage} / ${fs_size /storage} $alignr ${fs_free_perc /storage}%
-${offset 20}${color #474747}${fs_bar /storage}${color}
+${color}CPU: \
+${if_match ${cpu cpu1} <= 70}${color #474747}${else}${color #ad555a}$endif \
+${cpu cpu1}%\
+${color #232323} |\
+\
+${if_match ${cpu cpu2} <= 70}${color #474747}${else}${color #ad555a}$endif \
+${cpu cpu2}%\
+${color #232323} |\
+\
+${if_match ${cpu cpu3} <= 70}${color #474747}${else}${color #ad555a}$endif \
+${cpu cpu3}%\
+${color #232323} |\
+\
+${if_match ${cpu cpu4} <= 70}${color #474747}${else}${color #ad555a}$endif \
+${cpu cpu4}%\
+${color #232323}
 
-${offset 20}/storage2${alignc -20}${fs_used /storage2} / ${fs_size /storage2} $alignr ${fs_free_perc /storage2}%
-${offset 20}${color #474747}${fs_bar /storage2}${color}
+${color}${voffset 4}/home${alignr}${fs_used /home} / ${fs_size /home}
+${color #474747}${fs_bar /home}${color}
 
-${offset 20}/windows${alignc -20}${fs_used /windows} / ${fs_size /windows} $alignr ${fs_free_perc /windows}%
-${offset 20}${color #474747}${fs_bar /windows}${color}
+/storage${alignr}${fs_used /storage} / ${fs_size /storage}
+${color #474747}${fs_bar /storage}${color}
 
+/storage2${alignr}${fs_used /storage2} / ${fs_size /storage2}
+${color #474747}${fs_bar /storage2}${color}
 
-$if_mpd_playing}${font Cleanvertising:style=Light:size=20}${color #999999}Music  ${voffset -5}${hr 1}
-${offset 20}$color${font Terminus:style:Regular:size=8}$mpd_artist - $mpd_album
+/windows${alignr}${fs_used /windows} / ${fs_size /windows}
+${color #474747}${fs_bar /windows}${color}
 
-${offset 20}$mpd_title
-${offset 20}${color #474747}$mpd_bar$color
-${offset 20}${mpd_status}${alignr}${mpd_elapsed}/${mpd_length}
+${offset -20}$if_mpd_playing}${offset -20}${font Cleanvertising:style=Light:size=20}${color #999999}Music  ${voffset -5}${hr 1}
+$color${font Terminus:style:Regular:size=8}$mpd_artist - $mpd_album
+
+$mpd_title
+${color #474747}$mpd_bar$color
+${mpd_status}${alignr}${mpd_elapsed}/${mpd_length}
 
 ${endif}
-${font Cleanvertising:style=Light:size=20}${color #999999}Todo  ${voffset -5}${hr 1}
+${offset -20}${font Cleanvertising:style=Light:size=20}${color #999999}Todo  ${voffset -5}${hr 1}
 ${font Terminus:style=Regular:size=8}\
 ${execpi 60 ~/scripts/todo.sh}
