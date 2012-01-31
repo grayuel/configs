@@ -17,37 +17,36 @@ gap_y 50
 gap_x 20
 
 text_buffer_size 99999
-
 TEXT
 $alignc ${offset -64}${font Cleanvertising:style=Light:size=52}${time %I:%M}${font}
 
 
-${color #999999}${font Cleanvertising:style=Black:size=14}${time %B %Y}${font}  ${voffset -3}${hr 10}
-${color}${voffset 6}${offset 16}${font Terminus:style=Regular:size=12}${color #cccccc}${execpi 600 cal -m| tail -n +2 | sed -e 's|'`date +%d`'|\$\{color #9E5641}'`date +%d`'\$\{color}|'}
+${color #999999}${font Cleanvertising:style=Light:size=20}${time %B %Y}${font}  ${voffset -5}${hr 1}
+${color}${voffset 6}${font Terminus:style=Regular:size=8}${color #cccccc}${execpi 600 DJS=`date +%_d`; cal -js| tail -n +2 | sed s/"\(^\|[^0-9]\)$DJS"'\b'/'\1${color 9E5641}'"$DJS"'$color'/ | sed 's/^/\${offset 20}/'}
 
-
-${color #999999}${font Cleanvertising:style=Black:size=14}System  ${voffset -3}${hr 10}
+${color #999999}${font Cleanvertising:style=Light:size=20}System  ${voffset -5}${hr 1}
 ${font Terminus:style=Regular:size=8} \
-${color}${voffset 4}/home${alignc -20}${fs_used /home} / ${fs_size /home} $alignr ${fs_free_perc /home}%
-${color #474747}${fs_bar /home}${color}
+${offset 20}${color}${voffset 4}/home${alignc -20}${fs_used /home} / ${fs_size /home} $alignr ${fs_free_perc /home}%
+${offset 20}${color #474747}${fs_bar /home}${color}
 
-/storage${alignc -20}${fs_used /storage} / ${fs_size /storage} $alignr ${fs_free_perc /storage}%
-${color #474747}${fs_bar /storage}${color}
+${offset 20}/storage${alignc -20}${fs_used /storage} / ${fs_size /storage} $alignr ${fs_free_perc /storage}%
+${offset 20}${color #474747}${fs_bar /storage}${color}
 
-/storage2${alignc -20}${fs_used /storage2} / ${fs_size /storage2} $alignr ${fs_free_perc /storage2}%
-${color #474747}${fs_bar /storage2}${color}
+${offset 20}/storage2${alignc -20}${fs_used /storage2} / ${fs_size /storage2} $alignr ${fs_free_perc /storage2}%
+${offset 20}${color #474747}${fs_bar /storage2}${color}
 
-/windows${alignc -20}${fs_used /windows} / ${fs_size /windows} $alignr ${fs_free_perc /windows}%
-${color #474747}${fs_bar /windows}${color}
+${offset 20}/windows${alignc -20}${fs_used /windows} / ${fs_size /windows} $alignr ${fs_free_perc /windows}%
+${offset 20}${color #474747}${fs_bar /windows}${color}
 
 
-$if_mpd_playing}${font Cleanvertising:style=Black:size=14}${color #999999}Music  ${voffset -3}${hr 10}
-$color${font Terminus:style:Regular:size=8}$mpd_artist - $mpd_album
+$if_mpd_playing}${font Cleanvertising:style=Light:size=20}${color #999999}Music  ${voffset -5}${hr 1}
+${offset 20}$color${font Terminus:style:Regular:size=8}$mpd_artist - $mpd_album
 
-$mpd_title
-${color #474747}$mpd_bar$color
-${mpd_status}${alignr}${mpd_elapsed}/${mpd_length}
+${offset 20}$mpd_title
+${offset 20}${color #474747}$mpd_bar$color
+${offset 20}${mpd_status}${alignr}${mpd_elapsed}/${mpd_length}
 
 ${endif}
-${font Cleanvertising:style=Black:size=14}${color #999999}Todo  ${voffset -3}${hr 10}
-${font Terminus:style=Regular:size=8}${execpi 60 ~/todo.sh}
+${font Cleanvertising:style=Light:size=20}${color #999999}Todo  ${voffset -5}${hr 1}
+${font Terminus:style=Regular:size=8}\
+${execpi 60 ~/scripts/todo.sh}

@@ -6,6 +6,7 @@ import XMonad.Util.Run --spawnpipe
 
 import qualified Data.Map as M --keybindings
 
+import XMonad.Layout.ThreeColumns
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
@@ -56,8 +57,9 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 myKeys x = newKeys x `M.union` keys defaultConfig x
 
 --Layouts, resizableTile allows to resize all windows
-myLayout = gaps [(D,14), (R,240)] $ smartBorders $ resizableTile ||| mresizableTile ||| Full ||| tabs ||| magGrid
+myLayout = gaps [(D,14), (R,240)] $ smartBorders $ resizableTile ||| mresizableTile ||| Full ||| tabs ||| magGrid ||| threeColumns
         where
+                threeColumns = renamed [Replace "Tres"] $ ThreeCol 1 (3/100) (1/3)
                 magGrid = renamed [Replace "Grid"] $ Mag.magnifiercz 1.35 $ Grid
                 resizableTile = renamed [Replace "Tall"] $ ResizableTall nmaster delta ratio []
                 mresizableTile = renamed [Replace "Wide"] $ Mirror resizableTile
