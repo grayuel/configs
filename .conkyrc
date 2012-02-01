@@ -4,8 +4,8 @@ own_window no
 update_interval 1
 double_buffer yes
 no_buffers yes
-minimum_width 200
-maximum_width 200
+minimum_size 180
+maximum_width 180
 
 override_utf8_locale yes
 default_color cccccc
@@ -22,10 +22,10 @@ TEXT
 $alignc ${offset -64}${font Cleanvertising:style=Light:size=52}${time %I:%M}${font}
 
 
-${offset -20}${color #999999}${font Cleanvertising:style=Light:size=20}${time %B %Y}${font}  ${voffset -5}${hr 1}
+${offset -20}${color #999999}${font Cleanvertising:style=Light:size=20}${time %B %Y}${font}  ${voffset -5}${color #52798c}${hr 1}
 ${color}${voffset 6}${font Terminus:style=Regular:size=8}${color #cccccc}${execpi 600 DJS=`date +%_d`; cal -js| tail -n +2 | sed s/"\(^\|[^0-9]\)$DJS"'\b'/'\1${color #52798c}'"$DJS"'$color'/}
 
-${offset -20}${color #999999}${font Cleanvertising:style=Light:size=20}System  ${voffset -5}${hr 1}
+${offset -20}${color #999999}${font Cleanvertising:style=Light:size=20}System  ${voffset -5}${color #52798c}${hr 1}
 ${font Terminus:style=Regular:size=8}\
 ${color}RAM:${color #474747} $mem / $memmax
 
@@ -58,7 +58,7 @@ ${color #474747}${fs_bar /storage2}${color}
 /windows${alignr}${fs_used /windows} / ${fs_size /windows}
 ${color #474747}${fs_bar /windows}${color}
 
-${offset -20}$if_mpd_playing}${offset -20}${font Cleanvertising:style=Light:size=20}${color #999999}Music  ${voffset -5}${hr 1}
+${offset -20}$if_mpd_playing}${offset -20}${font Cleanvertising:style=Light:size=20}${color #999999}Music  ${voffset -5}${color #52798c}${hr 1}
 $color${font Terminus:style:Regular:size=8}$mpd_artist - $mpd_album
 
 $mpd_title
@@ -66,6 +66,6 @@ ${color #474747}$mpd_bar$color
 ${mpd_status}${alignr}${mpd_elapsed}/${mpd_length}
 
 ${endif}
-${offset -20}${font Cleanvertising:style=Light:size=20}${color #999999}Todo  ${voffset -5}${hr 1}
+${offset -20}${font Cleanvertising:style=Light:size=20}${color #999999}Todo  ${voffset -5}${color #52798c}${hr 1}
 ${font Terminus:style=Regular:size=8}\
 ${execpi 60 ~/scripts/todo.sh}

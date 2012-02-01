@@ -25,7 +25,7 @@ myTerm = "urxvt"
 
 --Border Colors
 colorNormalBorder = "#222222"
-colorFocusedBorder = "#9E5641"
+colorFocusedBorder = "#8c595a"
 
 --Modifier Key
 myModMask = mod4Mask
@@ -33,12 +33,12 @@ myModMask = mod4Mask
 --Status Bar Colors
 myLogHook :: Handle -> X ()
 myLogHook h = dynamicLogWithPP $ defaultPP
-        { ppCurrent           = dzenColor "#C18FCB" "#000000" .pad .wrap "«" "»"
+        { ppCurrent           = dzenColor "#429abd" "#000000" .pad .wrap "«" "»"
         , ppHidden            = dzenColor "#CDCDCD" "#000000" .pad .wrap "<" ">"
         , ppHiddenNoWindows   = dzenColor "#222222" "#000000" .pad .wrap "|" "|"
-        , ppUrgent            = dzenColor "#FFE080" "#000000" .pad .wrap "¤" "¤"
+        , ppUrgent            = dzenColor "#ad555a" "#000000" .pad .wrap "¤" "¤"
         , ppSep               = " "
-        , ppLayout            = dzenColor "#C18FCB" "#000000" .pad .wrap "|" "|"
+        , ppLayout            = dzenColor "#429abd" "#000000" .pad .wrap "|" "|"
         , ppTitle             = dzenColor "#606060" "#000000" .pad .dzenEscape
         , ppOutput            = hPutStrLn h
         }
