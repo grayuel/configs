@@ -1,7 +1,7 @@
 URxvt.scrollBar: off
 URxvt.font: -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*
 
-URxvt.foreground: #D0D0D0
+URxvt.foreground: #A0A0A0
 URxvt.background: #121212
 
 !black
