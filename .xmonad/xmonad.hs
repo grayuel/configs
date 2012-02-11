@@ -6,6 +6,10 @@ import XMonad.Util.Run --spawnpipe
 
 import qualified Data.Map as M --keybindings
 
+import XMonad.Util.Run
+
+import XMonad.Hooks.ManageDocks
+
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
@@ -18,7 +22,7 @@ import XMonad.Layout.Gaps --gap for conky and dzen, need to replace with struts 
 import XMonad.Hooks.DynamicLog --for dzen status bar
 
 --Statusbar
-myXmonadBar = "dzen2 -y '1138' -h '14' -w '2048' -ta 'l' -fg '#87AFD7' -bg '#000000' -fn -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*"
+myXmonadBar = "dzen2 -y '1128' -h '24' -w '1808' -ta 'l' -fg '#87AFD7' -bg '#000000' -fn -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*"
 
 --Terminal
 myTerm = "urxvt"
@@ -51,15 +55,16 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
         , ((modm,    xK_s), sendMessage MirrorShrink)
         , ((modm,    xK_x), sendMessage MirrorExpand)
         , ((modm,    xK_a), spawn "luakit")
+        , ((modm,    xK_z), runInTerm "" "ncmpcpp")
         ]
 
 --Combine New Keys with Old Keys
 myKeys x = newKeys x `M.union` keys defaultConfig x
 
 --Layouts, resizableTile allows to resize all windows
-myLayout = gaps [(D,14), (R,240)] $ smartBorders $ resizableTile ||| mresizableTile ||| Full ||| tabs ||| magGrid ||| threeColumns
+myLayout = gaps [(D,24), (R,240)] $ smartBorders $ resizableTile ||| mresizableTile ||| Full ||| tabs ||| magGrid
         where
-                threeColumns = renamed [Replace "Tres"] $ ThreeCol 1 (3/100) (1/3)
+--                threeColumns = renamed [Replace "Tres"] $ ThreeCol 1 (3/100) (1/3)
                 magGrid = renamed [Replace "Grid"] $ Mag.magnifiercz 1.35 $ Grid
                 resizableTile = renamed [Replace "Tall"] $ ResizableTall nmaster delta ratio []
                 mresizableTile = renamed [Replace "Wide"] $ Mirror resizableTile
@@ -83,6 +88,7 @@ main = do
                 , workspaces = myWorkspaces
                 , terminal = myTerm
                 , keys = myKeys
+                , manageHook = manageDocks <+> manageHook defaultConfig
                 , modMask = myModMask
                 , logHook = myLogHook dzenLeftBar
                 , normalBorderColor = colorNormalBorder
