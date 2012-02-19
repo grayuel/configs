@@ -65,7 +65,7 @@ myKeys x = newKeys x `M.union` keys defaultConfig x
 myLayout = gaps [(D,24), (R,240)] $ smartBorders $ resizableTile ||| mresizableTile ||| Full ||| tabs ||| magGrid
         where
 --                threeColumns = renamed [Replace "Tres"] $ ThreeCol 1 (3/100) (1/3)
-                magGrid = renamed [Replace "Grid"] $ Mag.magnifiercz 1.35 $ Grid
+                magGrid = renamed [Replace "Grid"] $ Grid -- $ Mag.magnifiercz 1.35
                 resizableTile = renamed [Replace "Tall"] $ ResizableTall nmaster delta ratio []
                 mresizableTile = renamed [Replace "Wide"] $ Mirror resizableTile
                 nmaster = 1

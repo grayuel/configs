@@ -1,8 +1,6 @@
 background no
 own_window no
 
-
-
 update_interval 1
 double_buffer yes
 no_buffers yes
@@ -20,14 +18,17 @@ gap_x 20
 
 text_buffer_size 99999
 TEXT
-$alignc ${offset -74}${color #AAAAAA}${font Cleanvertising:style=Light:size=52}${time %I:%M}${font}
+${color #aaaaaa}${offset -20}${font Cleanvertising:style=Light:size=52}${time %I}\
+${color #e04613}${voffset -6}:${voffset 6}\
+${color #aaaaaa}${time %M}${font}${color #e04613}  ${voffset -16}$hr
 
 
-${offset -20}${color #AAAAAA}${font Cleanvertising:style=Light:size=20}${time %B %Y}${font}  ${voffset -5}${color #52798c}${hr 1}
-${voffset 6}${font Terminus:style=Regular:size=8}${execpi 600  ~/scripts/conkycal}
+
+${offset -20}${color #AAAAAA}${font Cleanvertising:style=Light:size=20}${time %B %Y}${font}  ${voffset -5}${color #e04613}${hr 1}
+${voffset 6}${font Terminus:style=Regular:size=8}${execpi 600  ~/scripts/graycal -c}
 
 
-$if_mpd_playing}${offset -20}${font Cleanvertising:style=Light:size=20}${color #AAAAAA}Music  ${voffset -5}${color #52798c}${hr 1}
+$if_mpd_playing}${offset -20}${font Cleanvertising:style=Light:size=20}${color #AAAAAA}Music  ${voffset -5}${color #e04613}${hr 1}
 $color${font Terminus:style:Regular:size=8}$mpd_album
 $mpd_artist
 
@@ -36,6 +37,6 @@ $mpd_bar
 ${mpd_status}${alignr}${mpd_elapsed}/${mpd_length}
 
 ${endif}
-${offset -20}${font Cleanvertising:style=Light:size=20}${color #AAAAAA}Todo  ${voffset -5}${color #52798c}${hr 1}
+${offset -20}${font Cleanvertising:style=Light:size=20}${color #AAAAAA}Todo  ${voffset -5}${color #e04613}${hr 1}
 ${font Terminus:style=Regular:size=8}\
 ${execpi 60 ~/scripts/todo.sh}

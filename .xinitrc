@@ -2,11 +2,15 @@
 
 xrdb -merge ~/.Xresources
 
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export EDITOR="vim"
+
 xset fp+ /usr/share/fonts/local/
 
 xsetroot -cursor_name left_ptr
 
 feh --bg-scale ~/docs/pics/earth.jpg &
+
 
 dropboxd &
 pnmixer &
